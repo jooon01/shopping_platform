@@ -47,6 +47,7 @@ python manage.py runserver
 
 관리자 페이지에서 전체 관리
 
+------------------
 🛠️ 기술 스택
 Python 3.13
 
