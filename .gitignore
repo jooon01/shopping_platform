@@ -24,3 +24,5 @@ staticfiles/
 
 # 추가
 shopsite/settings.py
+
+.env
