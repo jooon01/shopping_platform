@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container px-4 px-lg-5 mt-5">
+    <h2 class="mb-4">중고 상품 목록</h2>
+    <form class="mb-5" method="get" action="{% url 'search' %}">
+        <input type="text" name="q" placeholder="상품 검색..." class="form-control w-50 d-inline-block">
+        <button type="submit" class="btn btn-dark">검색</button>
+    </form>
+
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for product in products %}
+        <div class="col mb-5">
+            <div class="card h-100">
+                {% if product.image %}
+                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}" />
+                {% else %}
+                <img class="card-img-top" src="https://dummyimage.com/450x300/ced4da/6c757d.jpg" alt="기본 이미지" />
+                {% endif %}
+
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <h5 class="fw-bolder">{{ product.title }}</h5>
+                        {{ product.price }}원
+                    </div>
+                </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark mt-auto" href="{% url 'product_detail' product.id %}">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">등록된 상품이 없습니다.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

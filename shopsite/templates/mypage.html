@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4 text-center">{{ user.username }}님의 상품 목록</h2>
+
+    {% if my_products %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in my_products %}
+        <div class="col">
+            <div class="card h-100">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}">
+                {% else %}
+                <img src="https://dummyimage.com/450x300/ced4da/6c757d.jpg" class="card-img-top" alt="기본 이미지">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.price }}원</p>
+
+                    {% if product.is_sold %}
+                        <span class="badge bg-success">거래 완료</span>
+                    {% endif %}
+                </div>
+
+                <div class="card-footer d-flex flex-wrap gap-1 justify-content-between">
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary btn-sm">자세히 보기</a>
+                    <a href="{% url 'update_product' product.id %}" class="btn btn-outline-warning btn-sm">수정</a>
+
+                    <form method="post" action="{% url 'delete_product' product.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('정말 삭제하시겠습니까?');">
+                            삭제
+                        </button>
+                    </form>
+
+                    {% if not product.is_sold %}
+                    <a href="{% url 'confirm_purchase' product.id %}" class="btn btn-outline-success btn-sm">거래 완료</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center">등록한 상품이 없습니다.</p>
+    {% endif %}
+</div>
+{% endblock %}

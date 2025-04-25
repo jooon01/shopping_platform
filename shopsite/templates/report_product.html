@@ -1,0 +1,12 @@
+<!-- shopsite/templates/report_product.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ target.title }} 신고하기</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <textarea name="reason" placeholder="신고 사유 작성"></textarea><br>
+    <button type="submit">신고하기</button>
+</form>
+{% endblock %}

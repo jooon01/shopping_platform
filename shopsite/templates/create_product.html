@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4 text-center">상품 등록</h2>
+    <form method="post" enctype="multipart/form-data" class="mx-auto" style="max-width: 500px;">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="title" class="form-label">상품명</label>
+            <input type="text" name="title" class="form-control" id="title" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">상품 설명</label>
+            <textarea name="description" class="form-control" id="description" rows="5" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">가격 (원)</label>
+            <input type="number" name="price" class="form-control" id="price" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">상품 이미지</label>
+            <input type="file" name="image" class="form-control" id="image">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">상품 등록</button>
+    </form>
+</div>
+{% endblock %}

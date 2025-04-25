@@ -1,0 +1,14 @@
+<!-- shopsite/templates/search.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>검색 결과: "{{ keyword }}"</h2>
+
+<ul>
+    {% for product in results %}
+    <li><a href="{% url 'product_detail' product.id %}">{{ product.title }}</a> - {{ product.price }}원</li>
+    {% empty %}
+    <li>검색 결과가 없습니다.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

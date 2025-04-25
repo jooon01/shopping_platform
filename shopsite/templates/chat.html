@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5" style="max-height: 90vh; overflow-y: auto;">
+    <h2 class="mb-4 text-center">채팅방</h2>
+
+    <!-- 채팅 상대 선택 -->
+    <form method="post" class="d-flex mb-3" style="max-width: 600px; margin: 0 auto;">
+        {% csrf_token %}
+        <select name="receiver" class="form-select me-2">
+            <option value="">전체 채팅방</option>
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="message" class="form-control me-2" placeholder="메시지를 입력하세요..." required>
+        <button type="submit" class="btn btn-success">보내기</button>
+    </form>
+
+    <!-- 채팅 내용 -->
+    <div class="card mx-auto" style="max-width: 600px; height: 500px; overflow-y: auto;">
+        <div class="card-body">
+            {% for msg in messages %}
+                {% if msg.sender == request.user %}
+                    <div class="text-end mb-2">
+                        <span class="badge bg-primary">{{ msg.message }}</span>
+                    </div>
+                {% else %}
+                    <div class="text-start mb-2">
+                        <span class="badge bg-secondary">
+                            {% if msg.receiver %}
+                                [{{ msg.sender.username }} → {{ msg.receiver.username }}] 
+                            {% else %}
+                                [{{ msg.sender.username }}]
+                            {% endif %}
+                            {{ msg.message }}
+                        </span>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p class="text-center text-muted">아직 채팅이 없습니다.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+<script>
+    // 페이지 로드되면 채팅창을 맨 아래로 스크롤
+    const chatBox = document.getElementById('chat-box');
+    if (chatBox) {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
