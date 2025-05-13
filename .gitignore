@@ -1,28 +1,117 @@
-# 가상환경
-venv/
-.env
-
-# macOS
-.DS_Store
-
-# Python 캐시
+# Python
 __pycache__/
 *.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.so
+*$py.class
 
-# DB
-*.sqlite3
+# 가상환경
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+.Python
+pyvenv.cfg
+pip-selfcheck.json
 
-# 미디어/업로드 파일
-media/
+# OS별
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+*.icloud
 
-# VSCode/IDE
+# Editor
 .vscode/
 .idea/
+*.iml
+.history/
 
-# Django staticfiles
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+local_settings.py
+media/
 staticfiles/
+shopsite/settings.py  # <- 개인 설정이면 유지
 
-# 추가
-shopsite/settings.py
-
+# 환경설정
 .env
+config.py
+
+# 빌드/패키지
+build/
+dist/
+*.egg-info/
+.eggs/
+develop-eggs/
+downloads/
+sdist/
+wheels/
+share/python-wheels/
+MANIFEST
+
+# 테스팅/커버리지
+.tox/
+.nox/
+.coverage*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+.hypothesis/
+
+# 문서/도구
+docs/_build/
+.pybuilder/
+target/
+.site
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# pyenv/pipenv/poetry
+.python-version
+Pipfile.lock
+poetry.lock
+.pdm.toml
+pdm.lock
+
+# PyInstaller
+*.spec
+
+# 타입 검사기
+.mypy_cache/
+.pytype/
+.pyre/
+.dmypy.json
+
+# 기타
+__pypackages__/
+cython_debug/
+celerybeat-schedule
+celerybeat.pid
+*.mo
+
+# 바이너리/윈도우 임시
+Thumbs.db
+ehthumbs.db
+*.stackdump
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+$RECYCLE.BIN/
