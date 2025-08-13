@@ -118,3 +118,4 @@ AUTH_USER_MODEL = 'shopsite.CustomUser'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# 방지우;;; ㅂㅅ
